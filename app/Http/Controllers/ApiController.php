@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Notes;
 use Illuminate\Http\Request;
 
+/**
+ * Class ApiController
+ *
+ * @package App\Http\Controllers
+ */
 class ApiController extends Controller
 {
     /**
      * List Notes.
      *
-     * @return json|string
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -21,10 +26,11 @@ class ApiController extends Controller
     /**
      * Get a Note.
      *
-     * @param  int  $id
-     * @return json|string
+     * @param int $id
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function get($id)
+    public function get(int $id)
     {
         return response()->json((new Notes())->get($id), 200,
             ['Access-Control-Allow-Origin'=>'*']);
@@ -33,8 +39,9 @@ class ApiController extends Controller
     /**
      * Update Note.
      *
-     * @param  Request $request
-     * @return json
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request)
     {
@@ -52,8 +59,9 @@ class ApiController extends Controller
     /**
      * Insert Note.
      *
-     * @param  Request $request
-     * @return json
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function insert(Request $request)
     {
@@ -68,8 +76,9 @@ class ApiController extends Controller
     /**
      * Delete Note.
      *
-     * @param  $id
-     * @return json
+     * @param $id
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function delete($id)
     {
@@ -79,6 +88,9 @@ class ApiController extends Controller
             ['Access-Control-Allow-Origin'=>'*']);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function token()
     {
         return response()->json(['token'=>csrf_token()], 200,

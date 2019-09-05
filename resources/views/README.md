@@ -3,7 +3,7 @@
 
 The views are setup as simple as possible.
 
-Everything is designed to use a base layout, /layouts/main.blade.php 
+Everything is designed to use a base layout, **/layouts/main.blade.php**. 
 This allows all the global stuff to be located in one simple source.
 
 ## Notes Controller

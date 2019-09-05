@@ -14,7 +14,8 @@ class ApiController extends Controller
      */
     public function index()
     {
-        return response()->json((new Notes())->all());
+        return response()->json((new Notes())->all(), 200,
+            ['Access-Control-Allow-Origin'=>'*']);
     }
 
     /**
@@ -25,7 +26,8 @@ class ApiController extends Controller
      */
     public function get($id)
     {
-        return response()->json((new Notes())->get($id));
+        return response()->json((new Notes())->get($id), 200,
+            ['Access-Control-Allow-Origin'=>'*']);
     }
 
     /**
@@ -42,7 +44,8 @@ class ApiController extends Controller
                 'note' => $request->input('note')
             ]);
 
-            return response()->json(['success' => 'Note updated successfully']);
+            return response()->json(['success' => 'Note updated successfully'], 200,
+                ['Access-Control-Allow-Origin'=>'*']);
         }
     }
 
@@ -58,7 +61,8 @@ class ApiController extends Controller
             'note'=>$request->input('note')
         ]);
 
-        return response()->json(['success'=>'Note added successfully']);
+        return response()->json(['success'=>'Note added successfully'], 200,
+            ['Access-Control-Allow-Origin'=>'*']);
     }
 
     /**
@@ -71,12 +75,13 @@ class ApiController extends Controller
     {
         (new Notes)->delete($id);
 
-        return response()->json(['success'=>'Note deleted successfully']);
+        return response()->json(['success'=>'Note deleted successfully'], 200,
+            ['Access-Control-Allow-Origin'=>'*']);
     }
 
     public function token()
     {
-        header('Set-Cookie', 'csrftoken='.csrf_token());
-        return response()->json(['token'=>csrf_token()]);
+        return response()->json(['token'=>csrf_token()], 200,
+            ['Access-Control-Allow-Origin'=>'*']);
     }
 }

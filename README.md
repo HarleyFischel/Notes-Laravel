@@ -66,10 +66,9 @@ npm run build
 - You should be able to add a note.
 - You should be able to edit a note.
 - The notes should be persisted and retrieved via a service.
-- You should be able to go straight to a note if specified in the url.
-
-
-- http://localhost:8000/3
-- http://localhost:8000/notes/3
-- http://localhost:8000/react/3
-- http://localhost:5000/3
+- You should be able to go straight to a note if specified in the url:
+  - http://localhost:8000/3
+  - http://localhost:8000/notes/3
+  - http://localhost:8000/react/3
+  - http://localhost:5000/3
+  

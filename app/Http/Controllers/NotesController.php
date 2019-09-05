@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Notes;
 use Illuminate\Http\Request;
 
+/**
+ * Class NotesController
+ *
+ * @package App\Http\Controllers
+ */
 class NotesController extends Controller
 {
     /**
      * List Notes.
      *
-     * @return View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -20,7 +25,7 @@ class NotesController extends Controller
     /**
      * Add New Note.
      *
-     * @return View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function add()
     {
@@ -31,9 +36,10 @@ class NotesController extends Controller
      * Edit a Note.
      *
      * @param  int  $id
-     * @return View
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         return view('edit', ['note' => (new Notes())->get($id)]);
     }
@@ -41,8 +47,9 @@ class NotesController extends Controller
     /**
      * Save Note.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function save(Request $request)
     {
@@ -57,15 +64,15 @@ class NotesController extends Controller
                 'note'=>$request->input('note')
             ]);
         }
-
         return redirect('/');
     }
 
     /**
-     * Save Note.
+     * Delete Note.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function delete($id)
     {
@@ -76,10 +83,11 @@ class NotesController extends Controller
     /**
      * View a Note.
      *
-     * @param  int  $id
-     * @return View
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function view($id)
+    public function view(int $id)
     {
         return view('view', ['note' => (new Notes())->get($id)]);
     }

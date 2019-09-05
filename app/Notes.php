@@ -2,15 +2,34 @@
 
 namespace App;
 
+/**
+ * Class Notes
+ *
+ * @package App
+ */
 class Notes
 {
+    /**
+     * @var string
+     */
     private $path = __DIR__."/Data/notes.json";
+
+    /**
+     * @var \stdClass
+     */
     private $notes;
+
+    /**
+     * @var string
+     */
     private $model = '{"0":{
         "id":"0",
         "note":""
     }}';
 
+    /**
+     * Notes constructor.
+     */
     public function __construct()
     {
         $this->notes = $this->fromJSON(
@@ -18,18 +37,32 @@ class Notes
         );
     }
 
-    public function all() {
+    /**
+     * @return false|\stdClass|string
+     */
+    public function all()
+    {
         return $this->notes;
     }
 
-    public function get($id) {
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function get(int $id)
+    {
         return $this->notes->$id;
     }
 
-    public function add($data) {
+    /**
+     * @param array $data
+     */
+    public function add(array $data)
+    {
         if (empty($this->notes)) {
             $this->notes = $this->fromJSON($this->model);
-            $id = '0';
+            $id = 0;
         } else {
             $id = ((array_key_last((array)$this->notes) ?? count((array)$this->notes)) + 1);
         }
@@ -37,13 +70,21 @@ class Notes
         $this->save();
     }
 
-    public function update($data) {
+    /**
+     * @param array $data
+     */
+    public function update(array $data)
+    {
         $id = $data['id'];
         $this->notes->$id = ['id'=>$id, 'note'=>$data['note']];
         $this->save();
     }
 
-    public function delete($id) {
+    /**
+     * @param int $id
+     */
+    public function delete(int $id)
+    {
         unset($this->notes->$id);
         $this->save();
     }

@@ -4,16 +4,18 @@ namespace App;
 
 class Notes
 {
-    static public $path = __DIR__."/Data/notes.json";
-    static private $data;
+    private $path = __DIR__."/Data/notes.json";
     private $notes;
+    private $model = '{"0":{
+        "id":"0",
+        "note":""
+    }}';
 
     public function __construct()
     {
         $this->notes = $this->fromJSON(
-            file_get_contents(__DIR__."/Data/notes.json")
+            @file_get_contents($this->path)
         );
-        self::$data = $this->notes;
     }
 
     public function all() {
@@ -25,8 +27,13 @@ class Notes
     }
 
     public function add($data) {
-        $id = ((array_key_last((array)$this->notes)??count((array)$this->notes))+1);
-        $this->notes->$id = ['id'=>$id, 'note'=>$data['note']];
+        if (empty($this->notes)) {
+            $this->notes = $this->fromJSON($this->model);
+            $id = '0';
+        } else {
+            $id = ((array_key_last((array)$this->notes) ?? count((array)$this->notes)) + 1);
+        }
+        $this->notes->$id = (object)['id'=>$id, 'note'=>$data['note']];
         $this->save();
     }
 
@@ -43,7 +50,7 @@ class Notes
 
     public function save()
     {
-        file_put_contents(__DIR__."/Data/notes.json", $this->toJSON($this->notes));
+        file_put_contents($this->path, $this->toJSON($this->notes));
     }
 
     /**

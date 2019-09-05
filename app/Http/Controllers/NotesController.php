@@ -57,8 +57,8 @@ class NotesController extends Controller
                 'note'=>$request->input('note')
             ]);
         }
-        //return response()->view('index', ['msg'=>'success'], 200);
-        return redirect('/'); //->action('NotesController@index'); //->route('index');
+
+        return redirect('/');
     }
 
     /**

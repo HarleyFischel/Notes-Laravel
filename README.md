@@ -37,7 +37,7 @@ The interface is a very simple
 
 The first thing you should see is the main notes list as hosted and ran by Laravel. All functionality is handled by the NotesController.
 
-![alt text](https://github.com/HarleyFischel/Notes-Laravel/public/notes-laravel-index.png "Index screen")
+![alt text](https://github.com/HarleyFischel/Notes-Laravel/blob/master/public/notes-laravel-index.png "Index screen")
 
 For the single page jquery only version utilizing the ApiController, goto: 
 http://localhost:8000/notes

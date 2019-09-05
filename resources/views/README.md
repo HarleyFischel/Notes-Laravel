@@ -1,29 +1,41 @@
 # Notes - Laravel
-### /app/Http/Controllers
+### /resources/views
 
-I kept the controllers simple.
+The views are setup as simple as possible.
 
-NotesController.php
-```
-class NotesController extends Controller
+Everything is designed to use a base layout, /layouts/main.blade.php 
+This allows all the global stuff to be located in one simple source.
 
-    public function index()
-    public function add()
-    public function edit(int $id)
-    public function save(Request $request)
-    public function delete($id)
-    public function view(int $id)
-``` 
+## Notes Controller
+#### index.blade.php
+The index page used by the NotesController
 
-ApiController.php
-```
-class ApiController extends Controller
+#### add.blade.php
+Used to add a new note through the NotesController
 
-    public function index()
-    public function get(int $id)
-    public function update(Request $request)
-    public function insert(Request $request)
-    public function delete($id)
-    public function token()
+#### edit.blade.php
+Used to edit an existing note through the NotesController
 
-```
+#### view.blade.php
+Used to open and view a note through the NotesController
+
+
+#### view.blade.php
+Used to open and view a note through the NotesController
+
+
+## Single pages using javascript to access the Notes API
+
+#### static.blade.php
+Used to navigate the notes system using the built in Rest API
+
+http://localhost:8000/notes
+
+This page uses jQuery only to access the notes API 
+
+#### react.blade.php
+Used to navigate the notes system using the built in Rest API
+
+http://localhost:8000/react
+
+This page uses React only to access the notes API 

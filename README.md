@@ -1,6 +1,12 @@
 # Notes - Laravel
 Notes project developed with the Laravel 5.8 php framework
 
+```
+git clone https://github.com/HarleyFischel/Notes-Laravel.git
+```
+```
+cd Notes-Laravel
+```
 Simply clone the project, switch to the directory and run:
 ```
 composer install
@@ -38,6 +44,10 @@ For the single page React only version (no jquery) utilizing the ApiController, 
 http://localhost:8000/react
 
 ### Run React build
+Switch over to the **react** directory: 
+```
+cd react
+```
 Make sure you have the node server installed
 ```
 npm install -g serve

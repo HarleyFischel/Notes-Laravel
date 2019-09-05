@@ -1,28 +1,33 @@
 # Notes - Laravel
-###/app/Http/Controllers
-I kept the controllers simple.
+### /app
 
-NotesController.php
+The Notes.php file handles everything accessing the json data.
+
+Designed to operate more like a service, it keeps the functionality simple and clean.
+
+Notes.php
 ```
-class NotesController extends Controller
+namespace App;
 
-    public function index()
-    public function add()
-    public function edit(int $id)
-    public function save(Request $request)
-    public function delete($id)
-    public function view(int $id)
-``` 
+class Notes
 
-ApiController.php
-```
-class ApiController extends Controller
+    private $path = __DIR__."/Data/notes.json";
+    private $notes;
+    private $model = '{"0":{
+        "id":"0",
+        "note":""
+    }}';
 
-    public function index()
+    public function __construct()
+
+    public function all()
     public function get(int $id)
-    public function update(Request $request)
-    public function insert(Request $request)
-    public function delete($id)
-    public function token()
+    public function add(array $data)
+    public function update(array $data)
+    public function delete(int $id)
+    public function save()
+
+    private function toJSON($data)
+    private function fromJSON($data)
 
 ```

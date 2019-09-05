@@ -1,5 +1,6 @@
 # Notes - Laravel
-###/app/Http/Controllers
+### /app/Http/Controllers
+
 I kept the controllers simple.
 
 NotesController.php
@@ -13,6 +14,7 @@ class NotesController extends Controller
     public function delete($id)
     public function view(int $id)
 ``` 
+
 ApiController.php
 ```
 class ApiController extends Controller

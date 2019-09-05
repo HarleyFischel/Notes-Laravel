@@ -2,26 +2,10 @@
 
 namespace App;
 
-/**
- * Class Notes
- *
- * @package App
- */
 class Notes
 {
-    /**
-     * @var string
-     */
     private $path = __DIR__."/Data/notes.json";
-
-    /**
-     * @var \stdClass
-     */
     private $notes;
-
-    /**
-     * @var string
-     */
     private $model = '{"0":{
         "id":"0",
         "note":""

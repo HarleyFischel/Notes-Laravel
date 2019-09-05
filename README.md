@@ -37,7 +37,29 @@ http://localhost:8000/notes
 For the single page React only version (no jquery) utilizing the ApiController, goto: 
 http://localhost:8000/react
 
+#### Run React build
+Make sure you have the node server installed
+```
+npm install -g serve
+```
+Then you can run:
+```
+serve -s build
+```
+to start the stand alone server for the React build
 
+open http://localhost:5000 in your browser
+
+*This allows for cross-site usage and testing*
+
+The source for the build is included and can be re-built or ran directly:
+```
+npm start
+```
+or re-build:
+```
+npm run build
+```
 
 ## Project Criteria:
 - There should be a list of all notes.
@@ -50,3 +72,4 @@ http://localhost:8000/react
 - http://localhost:8000/3
 - http://localhost:8000/notes/3
 - http://localhost:8000/react/3
+- http://localhost:5000/3

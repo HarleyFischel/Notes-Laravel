@@ -16,13 +16,6 @@ Route::get('/notes/{id}', function ($id) { return view('static',['id'=>$id]); })
 Route::get('/react', function () { return view('react'); });
 Route::get('/react/{id}', function ($id) { return view('react',['id'=>$id]); });
 
-Route::get('/api/token', 'ApiController@token');
-Route::get('/api', 'ApiController@index');
-Route::get('/api/{id}', 'ApiController@get');
-Route::put('/api', 'ApiController@insert');
-Route::post('/api', 'ApiController@update');
-Route::delete('/api/{id}', 'ApiController@delete');
-
 Route::get('/', 'NotesController@index');
 Route::get('/new', 'NotesController@add');
 Route::get('/edit/{id}', 'NotesController@edit');

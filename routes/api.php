@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/token', 'ApiController@token');
+Route::get('/', 'ApiController@index');
+Route::get('/{id}', 'ApiController@get');
+Route::put('/', 'ApiController@insert');
+Route::post('/', 'ApiController@update');
+Route::delete('/{id}', 'ApiController@delete');

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Notes;
 use Illuminate\Http\Request;
 
-/**
- * Class NotesController
- *
- * @package App\Http\Controllers
- */
 class NotesController extends Controller
 {
+    private $notes;
+
+    public function __construct(Notes $notes)
+    {
+        $this->notes = $notes;
+    }
+
     /**
      * List Notes.
      *
@@ -19,7 +21,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        return view('index', ['notes' => (new Notes())->all()]);
+        return view('index', ['notes' => $this->notes->all()]);
     }
 
     /**
@@ -41,7 +43,7 @@ class NotesController extends Controller
      */
     public function edit(int $id)
     {
-        return view('edit', ['note' => (new Notes())->get($id)]);
+        return view('edit', ['note' => $this->notes->get($id)]);
     }
 
     /**
@@ -54,13 +56,13 @@ class NotesController extends Controller
     public function save(Request $request)
     {
         if ($request->input('id')!='') {
-            (new Notes)->update([
+            $this->notes->update([
                 'id'=>$request->input('id'),
                 'note'=>$request->input('note')
             ]);
             return redirect('/'.$request->input('id'));
         } else {
-            (new Notes)->add([
+            $this->notes->add([
                 'note'=>$request->input('note')
             ]);
         }
@@ -76,7 +78,7 @@ class NotesController extends Controller
      */
     public function delete($id)
     {
-        (new Notes)->delete($id);
+        $this->notes->delete($id);
         return redirect('/');
     }
 
@@ -89,6 +91,6 @@ class NotesController extends Controller
      */
     public function view(int $id)
     {
-        return view('view', ['note' => (new Notes())->get($id)]);
+        return view('view', ['note' => $this->notes->get($id)]);
     }
 }

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Notes;
 use Illuminate\Http\Request;
 
-/**
- * Class ApiController
- *
- * @package App\Http\Controllers
- */
 class ApiController extends Controller
 {
+    private $notes;
+
+    public function __construct(Notes $notes)
+    {
+        $this->notes = $notes;
+    }
+
     /**
      * List Notes.
      *
@@ -19,7 +21,7 @@ class ApiController extends Controller
      */
     public function index()
     {
-        return response()->json((new Notes())->all(), 200,
+        return response()->json($this->notes->all(), 200,
             ['Access-Control-Allow-Origin'=>'*']);
     }
 
@@ -32,7 +34,7 @@ class ApiController extends Controller
      */
     public function get(int $id)
     {
-        return response()->json((new Notes())->get($id), 200,
+        return response()->json($this->notes->get($id), 200,
             ['Access-Control-Allow-Origin'=>'*']);
     }
 
@@ -46,7 +48,7 @@ class ApiController extends Controller
     public function update(Request $request)
     {
         if ($request->input('id')!='') {
-            (new Notes)->update([
+            $this->notes->update([
                 'id'   => $request->input('id'),
                 'note' => $request->input('note')
             ]);
@@ -65,7 +67,7 @@ class ApiController extends Controller
      */
     public function insert(Request $request)
     {
-        (new Notes)->add([
+        $this->notes->add([
             'note'=>$request->input('note')
         ]);
 
@@ -82,7 +84,7 @@ class ApiController extends Controller
      */
     public function delete($id)
     {
-        (new Notes)->delete($id);
+        $this->notes->delete($id);
 
         return response()->json(['success'=>'Note deleted successfully'], 200,
             ['Access-Control-Allow-Origin'=>'*']);
